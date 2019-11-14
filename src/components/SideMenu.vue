@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="side-menu">
+    <div class="title"><h1>My ToDo</h1></div>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
@@ -9,10 +10,27 @@
 import { Vue, Component } from 'vue-property-decorator';
 
 @Component
-export default class Sideber extends Vue {}
+export default class SideMenu extends Vue {}
 </script>
 
 <style>
+.side-menu {
+  width: 100%;
+  height: 100%;
+}
+
+div.title {
+  width: 100%;
+  height: 120px;
+  background: #432848;
+}
+
+h1 {
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+}
+
 a {
   font-weight: bold;
   color: #2c3e50;

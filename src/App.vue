@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <sideber />
+      <side-menu />
     </div>
     <div id="main">
       <router-view />
@@ -12,10 +12,10 @@
 <script lang="ts">
 import 'normalize.css';
 import { Vue, Component } from 'vue-property-decorator';
-import Sideber from './components/Sideber.vue';
+import SideMenu from './components/SideMenu.vue';
 
 @Component({
-  components: { Sideber },
+  components: { SideMenu },
 })
 export default class App extends Vue {}
 </script>
@@ -38,7 +38,7 @@ body {
 }
 
 #nav {
-  padding: 30px;
+  width: 240px;
   background: #6c4a71;
 }
 

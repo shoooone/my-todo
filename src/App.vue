@@ -12,7 +12,7 @@
 <script lang="ts">
 import 'normalize.css';
 import { Vue, Component } from 'vue-property-decorator';
-import SideMenu from './components/SideMenu.vue';
+import SideMenu from './components/SidePane/SideMenu.vue';
 
 @Component({
   components: { SideMenu },

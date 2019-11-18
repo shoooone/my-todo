@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import MenuInfoRow from '@/components/MenuInfoRow.vue';
+import MenuInfoRow from '@/components/SidePane/MenuInfoRow.vue';
 import { MenuInfo } from '@/models/MenuInfo';
 import { menuList } from '@/router';
 

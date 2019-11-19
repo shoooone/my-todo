@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <func-switch-button :func-id="funcId"></func-switch-button>
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <func-switch-button :func-id="funcId" @change="onChange"></func-switch-button>
   </div>
 </template>
 
@@ -14,5 +13,9 @@ import FuncSwitchButton from '@/components/MainPane/FuncSwitchButton.vue';
 })
 export default class ToDoPage extends Vue {
   funcId = 0;
+
+  onChange(value: number) {
+    this.funcId = value;
+  }
 }
 </script>

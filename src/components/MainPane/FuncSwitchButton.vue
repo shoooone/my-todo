@@ -1,7 +1,7 @@
 <template>
   <div class="func-switch-btn">
-    <div><input v-model="mode" type="radio" value="0" /><label>検索</label></div>
-    <div><input v-model="mode" type="radio" value="1" /><label>登録</label></div>
+    <div><input v-model="funcMode" type="radio" value="0" /><label>検索</label></div>
+    <div><input v-model="funcMode" type="radio" value="1" /><label>登録</label></div>
   </div>
 </template>
 
@@ -11,13 +11,13 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class FuncSwitchButton extends Vue {
   @Prop()
-  funcId!: number;
+  mode!: number;
 
-  get mode() {
-    return this.funcId;
+  get funcMode() {
+    return this.mode;
   }
 
-  set mode(value: any) {
+  set funcMode(value: any) {
     this.$emit('change', +value);
   }
 }
@@ -26,7 +26,7 @@ export default class FuncSwitchButton extends Vue {
 <style scoped>
 .func-switch-btn {
   display: flex;
-  border: 1px solid black;
+  border: 1px solid darkgrey;
   border-radius: 3px;
 }
 .func-switch-btn > div {

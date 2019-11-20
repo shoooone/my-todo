@@ -1,6 +1,13 @@
+import Mode from "@/models/Mode";
 <template>
   <div class="input-area">
-    <input type="text" :placeholder="placeholder" :class="classForIcon" />
+    <input
+      type="text"
+      :placeholder="placeholder"
+      :class="classForIcon"
+      @input="onInput"
+      @keydown.enter="submitKeyword"
+    />
   </div>
 </template>
 
@@ -33,6 +40,15 @@ export default class InputArea extends Vue {
       default:
         return '';
     }
+  }
+
+  onInput(ev: any) {
+    if (this.mode === Mode.REGISTER) return;
+    this.$emit('input:keyword', ev.target.value);
+  }
+
+  submitKeyword(ev: any) {
+    this.$emit('submit:keyword', ev.target.value);
   }
 }
 </script>

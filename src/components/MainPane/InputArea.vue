@@ -1,7 +1,8 @@
-import Mode from "@/models/Mode";
+import Mode from "@/models/Mode"; import Mode from "@/models/Mode";
 <template>
   <div class="input-area">
     <input
+      v-model="keyword"
       type="text"
       :placeholder="placeholder"
       :class="classForIcon"
@@ -19,6 +20,8 @@ import Mode from '@/models/Mode';
 export default class InputArea extends Vue {
   @Prop()
   mode!: Mode;
+
+  keyword = '';
 
   get placeholder() {
     switch (this.mode) {
@@ -44,11 +47,14 @@ export default class InputArea extends Vue {
 
   onInput(ev: any) {
     if (this.mode === Mode.REGISTER) return;
-    this.$emit('input:keyword', ev.target.value);
+    this.$emit('input:keyword', this.keyword);
   }
 
-  submitKeyword(ev: any) {
-    this.$emit('submit:keyword', ev.target.value);
+  submitKeyword() {
+    if (this.mode === Mode.SEARCH) return;
+    if (!this.keyword) return;
+    this.$emit('submit:keyword', this.keyword);
+    this.keyword = '';
   }
 }
 </script>

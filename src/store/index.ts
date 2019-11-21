@@ -11,15 +11,23 @@ export interface State {
 }
 const state: State = {
   categories: [],
-  tasks: [],
+  tasks: [
+    {
+      name: 'aaa',
+      detail: 'bbb',
+      categories: [],
+      id: 'dididididi',
+      status: Status.WAITING,
+    },
+  ],
 };
 
 const mutations: MutationTree<State> = {
   addCategory(state, payload: { category: Category }) {
     state.categories.push(payload.category);
   },
-  addTask(state, payload: { task: Task }) {
-    state.tasks.push(payload.task);
+  addTask(state, payload: Task) {
+    state.tasks.push(payload);
   },
   deleteCategory(state, payload: { id: string }) {
     state.categories = state.categories.filter(c => c.id !== payload.id);

@@ -1,48 +1,51 @@
-import Mode from "@/models/Mode"; import Mode from "@/models/Mode";
+import Mode from "@/models/Mode"; import Mode from "@/models/Mode"; import Mode from
+"@/models/Mode"; import Mode from "@/models/Mode";
 <template>
   <div class="input-area">
-    <input
-      v-model="keyword"
-      type="text"
-      :placeholder="placeholder"
-      :class="classForIcon"
-      @input="onInput"
-      @keydown.enter="submitKeyword"
-    />
+    <func-switch-button :mode="mode" @change="changeMode"></func-switch-button>
+    <div v-if="showSearchArea" class="input-keyword">
+      <input
+        v-model="keyword"
+        type="text"
+        placeholder="キーワードを入力してください"
+        @input="onInput"
+      />
+    </div>
+    <div v-if="showRegisterArea" class="input-register">
+      <input
+        v-model="keyword"
+        type="text"
+        placeholder="タスク名を入力してください"
+        @keydown.enter="submitKeyword"
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import Mode from '@/models/Mode';
+import FuncSwitchButton from '@/components/MainPane/FuncSwitchButton.vue';
 
-@Component
+@Component({
+  components: { FuncSwitchButton },
+})
 export default class InputArea extends Vue {
   @Prop()
   mode!: Mode;
 
   keyword = '';
 
-  get placeholder() {
-    switch (this.mode) {
-      case Mode.SEARCH:
-        return 'キーワードを入力してください';
-      case Mode.REGISTER:
-        return 'タスク名を入力してください';
-      default:
-        return '';
-    }
+  get showSearchArea() {
+    return this.mode === Mode.SEARCH;
   }
 
-  get classForIcon() {
-    switch (this.mode) {
-      case Mode.SEARCH:
-        return 'search';
-      case Mode.REGISTER:
-        return 'register';
-      default:
-        return '';
-    }
+  get showRegisterArea() {
+    return this.mode === Mode.REGISTER;
+  }
+
+  changeMode(value: Mode) {
+    this.$emit('change:mode', value);
   }
 
   onInput(ev: any) {
@@ -66,10 +69,10 @@ input {
   width: 100%;
   padding-left: 50px;
 }
-input.search {
+.input-keyword input {
   background-image: url('../../assets/search-icon.png');
 }
-input.register {
+.input-register input {
   background-image: url('../../assets/register-icon.png');
 }
 </style>

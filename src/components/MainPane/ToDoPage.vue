@@ -1,7 +1,11 @@
 <template>
   <div class="home">
-    <func-switch-button :mode="mode" @change="onChange"></func-switch-button>
-    <input-area :mode="mode" @input:keyword="changeKeyword" @submit:keyword="submit"></input-area>
+    <input-area
+      :mode="mode"
+      @change:mode="changeMode"
+      @input:keyword="changeKeyword"
+      @submit:keyword="submit"
+    ></input-area>
     <div v-for="task in displayTasks" :key="task.id" class="task-board">
       <task-info :task="task"></task-info>
     </div>
@@ -24,7 +28,7 @@ import TaskInfo from '@/components/MainPane/TaskInfo.vue';
   methods: {
     ...mapActions(['registerTask']),
   },
-  components: { FuncSwitchButton, InputArea, TaskInfo },
+  components: { InputArea, TaskInfo },
 })
 export default class ToDoPage extends Vue {
   mode: Mode = Mode.SEARCH;
@@ -40,7 +44,7 @@ export default class ToDoPage extends Vue {
     return this.tasks.filter(t => t.name.includes(this.searchWord));
   }
 
-  onChange(value: number) {
+  changeMode(value: Mode) {
     this.mode = value;
   }
 

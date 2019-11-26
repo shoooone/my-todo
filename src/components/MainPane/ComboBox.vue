@@ -20,6 +20,9 @@ export interface Option {
 export default class ComboBox extends Vue {
   @Prop()
   options!: Option[];
+
+  @Prop()
+  selected!: string[];
 }
 </script>
 
